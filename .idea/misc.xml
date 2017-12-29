@@ -4,8 +4,4 @@
     <option name="scssLintExecutable" value="/usr/local/bin/scss-lint" />
     <option name="pluginEnabled" value="true" />
   </component>
-  <component name="VagrantProjectSettings">
-    <option name="instanceFolder" value="" />
-    <option name="provider" value="" />
-  </component>
 </project>
