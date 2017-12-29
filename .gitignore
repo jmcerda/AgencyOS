@@ -249,12 +249,12 @@ GitHub.sublime-settings
 
 ### Drupal
 # Ignore non-custom parts of Drupal.
-/docroot/core
-/docroot/libraries
-/docroot/modules/contrib
-/docroot/profiles/contrib
-/docroot/themes/contrib
-/docroot/sites/default/files
+/drupal/core
+/drupal/libraries
+/drupal/modules/contrib
+/drupal/profiles/contrib
+/drupal/themes/contrib
+/drupal/sites/default/files
 
 # Ignore Composer-managed dependencies.
 vendor/

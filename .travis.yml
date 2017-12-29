@@ -73,18 +73,18 @@ install:
   # installed foe the sub-profile command to run. But we will reinstall later
   # and run the update.
   - 'if [ $VERSION = "SUBPROFILE" ]; then
-      cd $TRAVIS_BUILD_DIR/docroot;
+      cd $TRAVIS_BUILD_DIR/drupal;
       drush site-install agency --yes --account-pass=admin --db-url=mysql://agency:agency@127.0.0.1/drupal;
       cd $TRAVIS_BUILD_DIR;
       composer require drupal/paragraphs;
       drupal agency:subprofile --no-interaction --name="AgencyOS Extender" --machine-name=subprofile --include=paragraphs --exclude=agency_search;
       mkdir -p ./tests/features;
       curl -o tests/features/subprofile.feature  https://gist.githubusercontent.com/balsama/c8c03bb21f7a91a1a87d01ef185a3955/raw;
-      chmod +w ./docroot/sites/default/settings.php;
+      chmod +w ./drupal/sites/default/settings.php;
     fi;'
 
   # Install AgencyOS.
-  - cd $TRAVIS_BUILD_DIR/docroot
+  - cd $TRAVIS_BUILD_DIR/drupal
   - drush site-install $PROFILE_NAME --yes --account-pass=admin --db-url=mysql://agency:agency@127.0.0.1/drupal
   - drush config-set system.logging error_level all --yes
 
@@ -97,7 +97,7 @@ install:
 
   # Update codebase to head and run db updates.
   - cd $TRAVIS_BUILD_DIR
-  - composer nuke
+  - composer destroy
   - composer require jmcerda/agency:dev-8.x-3.x --no-update
   - composer update
   - drupal cache:rebuild all
@@ -106,10 +106,10 @@ install:
 
   # Generate the behat config.
   - cd $TRAVIS_BUILD_DIR
-  - drupal behat:init http://127.0.0.1:8080 --merge=../docroot/profiles/contrib/agency/tests/behat.yml
-  - drupal behat:include ../docroot/profiles/contrib/agency/tests/features --with-subcontexts=../docroot/profiles/contrib/agency/tests/features/bootstrap --with-subcontexts=../docroot/profiles/contrib/agency/src/AgencyOSExtension/Context
+  - drupal behat:init http://127.0.0.1:8080 --merge=../drupal/profiles/contrib/agency/tests/behat.yml
+  - drupal behat:include ../drupal/profiles/contrib/agency/tests/features --with-subcontexts=../drupal/profiles/contrib/agency/tests/features/bootstrap --with-subcontexts=../drupal/profiles/contrib/agency/src/AgencyOSExtension/Context
   - if [ $VERSION = "SUBPROFILE" ]; then drupal behat:include ../tests/features; fi;
-  - cd $TRAVIS_BUILD_DIR/docroot
+  - cd $TRAVIS_BUILD_DIR/drupal
 
 before_script:
   - drush runserver --default-server=builtin 8080 &>/dev/null &
