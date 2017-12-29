@@ -1,0 +1,15 @@
+{
+    "name": "jmcerda/agencyos",
+    "description": "Project template for AgencyOS web applications using the Cardstack framework (https:www.cardstack.com), Ember.js (https://emberjs.com) and the Drupal 8 Agency distribution (https://www.drupal.org/project/agency).",
+    "type": "project",
+    "license": "GPL-2.0+",
+    "homepage": "https://www.freighthouse.io",
+    "authors": [
+        {
+            "name": "Jeremy Michael Cerda",
+            "email": "jcerda@freighthouse.io"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
