@@ -11,5 +11,13 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "jmcerda/cardstack": "master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:jmcerda/cardstack.git"
+        }
+    ]
 }
